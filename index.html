@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sistem Pendataan Peserta Training</title>
+
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Ctext y='54' x='6' font-size='56'%3E👤%3C/text%3E%3C/svg%3E"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <i class="fas fa-seedling"></i>
+        <span>Training Center</span>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="#data-pribadi" class="nav-link active">Data Pribadi</a></li>
+        <li class="nav-item"><a href="#ukuran-baju" class="nav-link">Ukuran Baju</a></li>
+        <li class="nav-item admin-only hidden"><a href="#lokasi-penempatan" class="nav-link">Lokasi Penempatan</a></li>
+        <li class="nav-item admin-only hidden"><a href="#input-nilai" class="nav-link">Input Nilai</a></li>
+        <li class="nav-item admin-only hidden"><a href="#report" class="nav-link">Report</a></li>
+        <li class="nav-item"><a href="#" id="admin-login" class="nav-link">Admin</a></li>
+        <li class="nav-item admin-only hidden"><a href="#" id="admin-logout" class="nav-link">Logout Admin</a></li>
+      </ul>
+      <div class="hamburger">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Data Pribadi -->
+    <section id="data-pribadi" class="section active">
+      <div class="section-header">
+        <h2><i class="fas fa-user"></i> Data Pribadi Peserta</h2>
+        <p>Isi formulir data pribadi peserta training</p>
+      </div>
+      <form id="personal-data-form" class="data-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="nik">NIK Peserta <span class="required">*</span></label>
+            <input type="text" id="nik" name="nik" required pattern="[0-9]+" title="Hanya angka yang diperbolehkan"/>
+          </div>
+          <div class="form-group">
+            <label for="nama">Nama Lengkap <span class="required">*</span></label>
+            <input type="text" id="nama" name="nama" required/>
+          </div>
+          <div class="form-group">
+            <label for="program">Program <span class="required">*</span></label>
+            <input type="text" id="program" name="program" list="program-list" required/>
+            <datalist id="program-list">
+              <option value="KLP1 AGRO"><option value="KLP1 MILL"><option value="KLP1 ADMN">
+            </datalist>
+          </div>
+          <div class="form-group">
+            <label for="batch">Batch <span class="required">*</span></label>
+            <input type="number" id="batch" name="batch" required/>
+          </div>
+          <div class="form-group">
+            <label for="tempat-lahir">Tempat Lahir <span class="required">*</span></label>
+            <input type="text" id="tempat-lahir" name="tempat_lahir" required/>
+          </div>
+          <div class="form-group">
+            <label for="tanggal-lahir">Tanggal Lahir <span class="required">*</span></label>
+            <input type="date" id="tanggal-lahir" name="tanggal_lahir" required inputmode="none">
+          </div>
+          <div class="form-group">
+            <label for="agama">Agama <span class="required">*</span></label>
+            <input type="text" id="agama" name="agama" list="agama-list" required/>
+            <datalist id="agama-list">
+              <option value="ISLAM"><option value="KRISTEN PROTESTAN"><option value="KATHOLIK"><option value="HINDU"><option value="BUDHA">
+            </datalist>
+          </div>
+          <div class="form-group">
+            <label for="poh">POH <span class="required">*</span></label>
+            <input type="text" id="poh" name="poh" required/>
+          </div>
+          <div class="form-group">
+            <label for="pendidikan">Pendidikan Terakhir <span class="required">*</span></label>
+            <input type="text" id="pendidikan" name="pendidikan" list="pendidikan-list" required/>
+            <datalist id="pendidikan-list">
+              <option value="SLTA"><option value="D1"><option value="D3"><option value="D4"><option value="S1">
+            </datalist>
+          </div>
+          <div class="form-group">
+            <label for="sekolah">Asal Sekolah <span class="required">*</span></label>
+            <input type="text" id="sekolah" name="sekolah" required/>
+          </div>
+          <div class="form-group">
+            <label for="daerah">Asal Daerah <span class="required">*</span></label>
+            <input type="text" id="daerah" name="daerah" required/>
+          </div>
+          <div class="form-group">
+            <label for="hp">No. HP <span class="required">*</span></label>
+            <input type="text" id="hp" name="hp" pattern="[0-9]+" title="Hanya angka yang diperbolehkan" required/>
+          </div>
+          <div class="form-group">
+            <label for="kontak-darurat">Kontak Darurat <span class="required">*</span></label>
+            <input type="text" id="kontak-darurat" name="kontak_darurat" pattern="[0-9]+" title="Hanya angka yang diperbolehkan" required/>
+          </div>
+          <div class="form-group">
+            <label for="hubungan">Hub. Kontak Darurat <span class="required">*</span></label>
+            <input type="text" id="hubungan" name="hubungan" list="hubungan-list" required/>
+            <datalist id="hubungan-list">
+              <option value="AYAH"><option value="IBU"><option value="KAKAK"><option value="ADIK">
+            </datalist>
+          </div>
+          <div class="form-group">
+            <label for="tinggi">Tinggi Badan (cm) <span class="required">*</span></label>
+            <input type="number" id="tinggi" name="tinggi" required/>
+          </div>
+          <div class="form-group">
+            <label for="berat">Berat Badan (kg) <span class="required">*</span></label>
+            <input type="number" id="berat" name="berat" required/>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Simpan Data</button>
+          <button type="reset" class="btn btn-secondary">Reset</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Ukuran Baju -->
+    <section id="ukuran-baju" class="section">
+      <div class="section-header">
+        <h2><i class="fas fa-tshirt"></i> Ukuran Baju</h2>
+        <p>Pilih ukuran baju yang sesuai untuk peserta</p>
+      </div>
+      <div class="shirt-size-container">
+        <div class="shirt-visual">
+          <img src="img/contoh-baju.png" alt="Contoh Baju" class="shirt-image"/>
+          <div class="size-info">
+            <h3>Informasi Ukuran Baju</h3>
+            <hr>
+            <h4>Lebar Dada:</h4>
+            <div class="size-table">
+              <div class="size-row"><span class="size-label">S</span><span class="size-value">50 cm</span></div>
+              <div class="size-row"><span class="size-label">M</span><span class="size-value">52 cm</span></div>
+              <div class="size-row"><span class="size-label">L</span><span class="size-value">54 cm</span></div>
+              <div class="size-row"><span class="size-label">XL</span><span class="size-value">56 cm</span></div>
+              <div class="size-row"><span class="size-label">XXL</span><span class="size-value">58 cm</span></div>
+              <div class="size-row"><span class="size-label">XXXL</span><span class="size-value">60 cm</span></div>
+            </div>
+          </div>
+        </div>
+        <form id="shirt-size-form" class="data-form">
+          <div class="form-group">
+            <label for="ukuran-baju-input">Ukuran Baju <span class="required">*</span></label>
+            <input type="text" id="ukuran-baju-input" name="ukuran_baju" list="ukuran-list" required/>
+            <datalist id="ukuran-list">
+              <option value="S"><option value="M"><option value="L"><option value="XL"><option value="XXL"><option value="XXXL">
+            </datalist>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Simpan Ukuran Baju</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Admin Sections (hidden) -->
+    <!-- Lokasi Penempatan (Admin) -->
+<section id="lokasi-penempatan" class="section admin-only hidden">
+  <div class="section-header">
+    <h2><i class="fas fa-map-marker-alt"></i> Lokasi Penempatan</h2>
+    <p>Isi informasi penempatan peserta</p>
+  </div>
+
+  <form id="placement-form" class="data-form">
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="lokasi_penempatan">Lokasi Penempatan <span class="required">*</span></label>
+        <input type="text" id="lokasi_penempatan" name="lokasi_penempatan" required />
+      </div>
+      <div class="form-group">
+        <label for="region">Region</label>
+        <input type="text" id="region" name="region" />
+      </div>
+      <div class="form-group">
+        <label for="estate">Estate</label>
+        <input type="text" id="estate" name="estate" />
+      </div>
+      <div class="form-group">
+        <label for="divisi">Divisi</label>
+        <input type="text" id="divisi" name="divisi" />
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Simpan Penempatan</button>
+    </div>
+  </form>
+</section>
+
+<!-- Input Nilai (Admin) -->
+<section id="input-nilai" class="section admin-only hidden">
+  <div class="section-header">
+    <h2><i class="fas fa-clipboard-check"></i> Input Nilai</h2>
+    <p>Masukkan nilai program peserta</p>
+  </div>
+
+  <form id="score-form" class="data-form">
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="nilai_program">Nilai Program (0–100) <span class="required">*</span></label>
+        <input type="number" id="nilai_program" name="nilai_program" min="0" max="100" required />
+      </div>
+      <div class="form-group" style="grid-column: 1/-1">
+        <label for="catatan_nilai">Catatan (opsional)</label>
+        <textarea id="catatan_nilai" name="catatan_nilai" rows="3" style="width:100%;padding:.75rem;border:1px solid var(--border);border-radius:4px;font-family:inherit;font-size:1rem;"></textarea>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Simpan Nilai</button>
+    </div>
+  </form>
+</section>
+
+<!-- Report (Admin) -->
+<section id="report" class="section admin-only hidden">
+  <div class="section-header">
+    <h2><i class="fas fa-chart-bar"></i> Report</h2>
+    <p>Ringkasan data peserta & aksi admin</p>
+  </div>
+
+  <!-- Toolbar atas -->
+  <div class="data-form" style="margin-bottom:1rem">
+    <div class="form-actions" style="justify-content:flex-start; gap:.5rem; flex-wrap:wrap">
+      <button id="sync-now-btn" class="btn btn-primary">Sinkron Sekarang</button>
+      <button id="load-from-gas-btn" class="btn btn-primary" style="background:#1b5e20">Muat Data (GAS)</button>
+      <button id="export-json-btn" class="btn btn-secondary">Export JSON</button>
+      <button id="export-csv-btn" class="btn btn-secondary">Export CSV</button>
+      <button id="clear-local-btn" class="btn btn-secondary" style="background:#ffe8e8;color:#b00020">Bersihkan Data Lokal</button>
+    </div>
+  </div>
+
+  <!-- Ringkas data lokal -->
+  <div id="report-container" style="overflow:auto; margin-bottom:1.25rem">
+    <!-- dirender via JS (ringkasan data peserta yang aktif) -->
+  </div>
+
+  <!-- Kontrol filter/sort/paging untuk data kolektif -->
+  <div class="data-form" style="margin-bottom:.75rem">
+    <div class="form-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:.75rem">
+      <div class="form-group">
+        <label for="report-search">Cari (Nama/NIK/Program)</label>
+        <input type="text" id="report-search" placeholder="ketik untuk mencari..." />
+      </div>
+      <div class="form-group">
+        <label for="filter-program">Filter Program</label>
+        <select id="filter-program">
+          <option value="">(Semua)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="filter-region">Filter Region</label>
+        <select id="filter-region">
+          <option value="">(Semua)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Filter Batch</label>
+        <div style="display:flex; gap:.5rem">
+          <input type="number" id="filter-batch-min" placeholder="min" style="width:100%">
+          <input type="number" id="filter-batch-max" placeholder="max" style="width:100%">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="sort-by">Urutkan</label>
+        <select id="sort-by">
+          <option value="timestamp_desc">Terbaru (Timestamp)</option>
+          <option value="timestamp_asc">Terlama (Timestamp)</option>
+          <option value="nama_asc">Nama A→Z</option>
+          <option value="nama_desc">Nama Z→A</option>
+          <option value="program_asc">Program A→Z</option>
+          <option value="batch_asc">Batch Kecil→Besar</option>
+          <option value="batch_desc">Batch Besar→Kecil</option>
+          <option value="nilai_desc">Nilai Tinggi→Rendah</option>
+          <option value="nilai_asc">Nilai Rendah→Tinggi</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="page-size">Baris/Tampilan</label>
+        <select id="page-size">
+          <option>10</option>
+          <option>25</option>
+          <option>50</option>
+          <option>100</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabel data dari GAS -->
+  <div id="gas-table" style="overflow:auto"></div>
+
+  <!-- Pager -->
+  <div id="gas-pager" style="display:flex; align-items:center; gap:.5rem; margin-top:.75rem">
+    <!-- dirender via JS -->
+  </div>
+</section>
+
+
+    <!-- Admin Login Modal -->
+    <div id="admin-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Admin Login</h3>
+          <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+          <form id="admin-login-form">
+            <div class="form-group">
+              <label for="admin-password">Password</label>
+              <input type="password" id="admin-password" required/>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Seriang Training Center - Karyamas Plantation</p>
+    </div>
+  </footer>
+
+  <!-- Script order penting -->
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/gas-client.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/form-handler.js"></script>
+</body>
+</html>
