@@ -229,6 +229,28 @@
     <p>Ringkasan data peserta & aksi admin</p>
   </div>
 
+    <!-- Panel Import -->
+  <div class="card import-panel">
+    <h3 style="margin-bottom:.5rem;">Import Data (.xlsx)</h3>
+    <div class="import-controls">
+      <input type="file" id="xlsx-file" accept=".xlsx" />
+      <label class="checkbox">
+        <input type="checkbox" id="skip-duplicates" checked />
+        <span>Lewati duplikat</span>
+      </label>
+      <button id="btn-parse-xlsx" class="btn btn-secondary">Validasi & Tampilkan</button>
+      <button id="btn-import-gas" class="btn btn-primary" disabled>Upload ke G.Sheets</button>
+    </div>
+    <small class="muted">Kolom minimal: <code>NIK</code>, <code>Nama</code>. Format Tgl <code>YYYY-MM-DD</code> atau <code>DD/MM/YYYY</code>.</small>
+    <div id="import-stats" style="margin-top:.75rem;color:var(--text-light)"></div>
+    <div class="table-wrap" style="margin-top:1rem;max-height:420px;overflow:auto;">
+      <table id="xlsx-preview-table" class="table-simple nowrap">
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
   <!-- Toolbar atas -->
   <div class="data-form" style="margin-bottom:1rem">
     <div class="form-actions" style="justify-content:flex-start; gap:.5rem; flex-wrap:wrap">
@@ -325,6 +347,34 @@
         </div>
       </div>
     </div>
+    <!-- Upload Progress Modal -->
+<div id="upload-progress-modal" class="modal" aria-hidden="true">
+  <div class="modal-content progress-modal">
+    <div class="modal-header">
+      <h3>Memproses Upload</h3>
+      <span class="close" id="upload-progress-close" title="Tutup">&times;</span>
+    </div>
+    <div class="modal-body">
+      <p id="upload-progress-status">Menyiapkan…</p>
+
+      <div class="progressbar" aria-label="Progress upload" aria-live="polite">
+        <div class="progressbar-fill" id="upload-progress-fill" style="width:0%"></div>
+      </div>
+
+      <div class="progress-meta">
+        <span id="upload-progress-count">0 / 0</span>
+        <span id="upload-progress-percent">0%</span>
+      </div>
+
+      <div id="upload-progress-errors" class="progress-errors hidden" role="region" aria-label="Kesalahan upload"></div>
+
+      <div class="form-actions">
+        <button type="button" class="btn btn-secondary" id="upload-progress-cancel">Batalkan</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   </main>
 
   <!-- Footer -->
@@ -338,6 +388,7 @@
   <script src="js/utils.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/gas-client.js"></script>
+  <script src="js/vendor/xlsx.full.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/form-handler.js"></script>
 </body>
