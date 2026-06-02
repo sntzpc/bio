@@ -18,7 +18,7 @@ const Storage = (function(){
   };
 
   const DEFAULT_SUGGESTIONS = {
-    program    : ['MAGANG','KLP1 AGRO','KLP1 AGRO','KLP1 MILL','KLP1 ADMN'],
+    program    : ['MAGANG','KLP1 AGRO','KLP1 MILL','KLP1 ADMN'],
     agama      : ['ISLAM','KRISTEN PROTESTAN','KATHOLIK','HINDU','BUDHA'],
     pendidikan : ['SLTA','D1','D3','D4','S1'],
     hubungan   : ['AYAH','IBU','KAKAK','ADIK'],
